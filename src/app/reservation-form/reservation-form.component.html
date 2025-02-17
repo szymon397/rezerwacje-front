@@ -1,0 +1,58 @@
+<div style="text-align: center;">
+  <h2>Nowa Rezerwacja</h2>
+</div>
+
+<form [formGroup]="reservationForm" (ngSubmit)="submitReservation()" class="reservation-form">
+  <div class="form-container">
+    <div class="column">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Telefon</mat-label>
+        <input matInput type="text" formControlName="phone" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data rozpoczęcia</mat-label>
+        <input matInput [matDatepicker]="startPicker" formControlName="startDate" required>
+        <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data zakończenia</mat-label>
+        <input matInput [matDatepicker]="endPicker" formControlName="endDate" required>
+        <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Typ sesji</mat-label>
+        <mat-select formControlName="sessionType">
+          <mat-option *ngFor="let type of sessionTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Opis</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Miejsce</mat-label>
+        <input matInput formControlName="location" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" class="submit-button">
+    Zarezerwuj
+  </button>
+
+  <p *ngIf="!checkAvailability()" class="warning-text">⚠️ Ten termin jest już zajęty!</p>
+</form>
