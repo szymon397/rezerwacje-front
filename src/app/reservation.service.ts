@@ -11,19 +11,19 @@ export class ReservationService {
   constructor(private http: HttpClient) {}
 
   getReservations(): Observable<any[]> {
-    return this.http.get<any[]>('https:/rezerwacje-backend-production.up.railway.app/api/reservations');
+    return this.http.get<any[]>('https://rezerwacje-backend-production.up.railway.app/api/reservations');
   }
 
   updateReservationStatus(id: string, status: string): Observable<any> {
-    return this.http.put(`https:/rezerwacje-backend-production.up.railway.app/api/reservations/${id}`, { status });
+    return this.http.put(`https://rezerwacje-backend-production.up.railway.app/api/reservations/${id}`, { status });
   }
 
   deleteReservation(id: string): Observable<any> {
-    return this.http.delete(`https:/rezerwacje-backend-production.up.railway.app/api/reservations/${id}`);
+    return this.http.delete(`https://rezerwacje-backend-production.up.railway.app/api/reservations/${id}`);
   }
 
   addReservation(data: any): Observable<any> {
-    return this.http.post(`https:/rezerwacje-backend-production.up.railway.app/api/reservations`, data);
+    return this.http.post(`https://rezerwacje-backend-production.up.railway.app/api/reservations`, data);
   }
 
   triggerUpdate() {
